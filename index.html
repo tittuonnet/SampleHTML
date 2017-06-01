@@ -1,0 +1,412 @@
+<html>
+<head>
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <script src="https://use.fontawesome.com/44b86896ef.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+  <header>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 col-md-4">
+          <img class="logo" src="img/logo.png" alt="logo" title="logo" />
+        </div>
+        <div class="col-xs-12 col-md-8">
+          <ul class="header_nav">
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Employees</a></li>
+            <li><a href="#">Travel List</a></li>
+            <li class="profile_img">
+              <img width="36" height="36" src="data:image/jpg;base64,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" alt="Tittu">  Tittu
+              <span class="caret"></span>
+            </li>
+          </ul>
+        </div>
+      </dvi>
+    </div>
+  </header>
+  <div class="clear-fix"></div>
+  <div class="container">
+    <div class="layout-body">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-heading">
+              <h4>Where are you spending?</h4>
+            </div>
+            <div class="card-body">
+              <canvas data-chart="line" data-animation="false" data-labels='["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]' data-values='[{"label": "This week", "backgroundColor": "transparent", "borderColor": "#d9230f", "pointBackgroundColor": "#d9230f", "data": [29432, 20314, 17665, 22162, 31194, 35053, 29298]}, {"label": "Last week", "backgroundColor": "transparent", "borderColor": "#d9831f", "pointBackgroundColor": "#d9831f", "data": [9956, 22607, 30963, 22668, 16338, 22222, 39238]}]' data-tooltips='{"mode": "label"}' data-hide='["gridLinesX", "legend"]' height="150"></canvas>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-heading">
+              <h4>Which department is saving?</h4>
+            </div>
+            <div class="card-body">
+              <canvas data-chart="horizontal-bar" data-labels='["May", "Jun", "Jul", "Aug"]' data-values='[{"backgroundColor": "#50b432", "label": "New Visitor", "data": [10489, 14790, 20332, 18422]}, {"backgroundColor": "#058dc7", "label": "Returning Visitor", "data": [29174, 35897, 36197, 31212]}]' data-scales='{"xAxes": [{ "ticks": { "beginAtZero": "ture" }}]}' data-hide='["legend"]' height="150" width="300"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="margin-top:30px;">
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <div class="media">
+                <div class="media-middle media-left">
+                  <span class="bg-gray sq-64 circle">
+                    <span class="fa icon fa-plane"></span>
+                  </span>
+                </div>
+                <div class="media-middle media-body">
+                  <h3 class="media-heading">
+                    <span class="fw-l">$1209</span>
+                    <span class="fw-b fz-sm text-danger">
+                      <span class="fa fa-caret-up"></span>
+                      15%
+                    </span>
+                  </h3>
+                  <small>Average Travel / Trip</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <div class="media">
+                <div class="media-middle media-left">
+                  <span class="bg-gray sq-64 circle">
+                    <span class="fa icon fa-bed"></span>
+                  </span>
+                </div>
+                <div class="media-middle media-body">
+                  <h3 class="media-heading">
+                    <span class="fw-l">$890</span>
+                    <span class="fw-b fz-sm text-success">
+                      <span class="fa fa-caret-down"></span>
+                      15%
+                    </span>
+                  </h3>
+                  <small>Average cost / Hotel night</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <div class="media">
+                <div class="media-middle media-left">
+                  <span class="bg-gray sq-64 circle">
+                    <span class="fa icon fa-car"></span>
+                  </span>
+                </div>
+                <div class="media-middle media-body">
+                  <h3 class="media-heading">
+                    <span class="fw-l">$100</span>
+                    <span class="fw-b fz-sm text-success">
+                      <span class="fa fa-caret-down"></span>
+                      7%
+                    </span>
+                  </h3>
+                  <small>Average cost / cab</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="margin-top:30px;">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-heading">
+              <h4>Key Matrics</h4>
+            </div>
+            <div class="card-body">
+              <table class="table table-hover table-bordered">
+                <thead>
+                  <tr>
+                    <th class="text-left">#</th>
+                    <th class="text-left">Item</th>
+                    <th class="text-right">Budget</th>
+                    <th class="text-right">Actual</th>
+                    <th class="text-right">Savings</th>
+                    <th class="text-center">Last 6 months</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="text-left">1</td>
+                    <td class="text-left">Travel</td>
+                    <td class="text-right">11,706</td>
+                    <td class="text-right">58,530</td>
+                    <td class="text-right">30,530</td>
+                    <td class="text-center">
+                      <span data-peity="bar" style="display: none;">5,3,9,6,5,9,7,3,5,2</span><svg class="peity" height="16" width="32"><rect fill="#4D89F9" x="0.32" y="7.111111111111111" width="2.56" height="8.88888888888889"></rect><rect fill="#4D89F9" x="3.5200000000000005" y="10.666666666666668" width="2.5599999999999996" height="5.333333333333332"></rect><rect fill="#4D89F9" x="6.720000000000001" y="0" width="2.5599999999999987" height="16"></rect><rect fill="#4D89F9" x="9.92" y="5.333333333333334" width="2.5600000000000005" height="10.666666666666666"></rect><rect fill="#4D89F9" x="13.12" y="7.111111111111111" width="2.5600000000000023" height="8.88888888888889"></rect><rect fill="#4D89F9" x="16.32" y="0" width="2.5600000000000023" height="16"></rect><rect fill="#4D89F9" x="19.52" y="3.5555555555555554" width="2.5600000000000023" height="12.444444444444445"></rect><rect fill="#4D89F9" x="22.72" y="10.666666666666668" width="2.5600000000000023" height="5.333333333333332"></rect><rect fill="#4D89F9" x="25.919999999999998" y="7.111111111111111" width="2.5600000000000023" height="8.88888888888889"></rect><rect fill="#4D89F9" x="29.119999999999997" y="12.444444444444445" width="2.5600000000000023" height="3.5555555555555554"></rect></svg>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">2</td>
+                    <td class="text-left">Hotel</td>
+                    <td class="text-right">15,860</td>
+                    <td class="text-right">79,300</td>
+                    <td class="text-right">18,530</td>
+                    <td class="text-center">
+                      <span data-peity="bar" style="display: none;">4,9,6,7,3,1,2,5,6,8</span><svg class="peity" height="16" width="32"><rect fill="#4D89F9" x="0.32" y="8.88888888888889" width="2.56" height="7.111111111111111"></rect><rect fill="#4D89F9" x="3.5200000000000005" y="0" width="2.5599999999999996" height="16"></rect><rect fill="#4D89F9" x="6.720000000000001" y="5.333333333333334" width="2.5599999999999987" height="10.666666666666666"></rect><rect fill="#4D89F9" x="9.92" y="3.5555555555555554" width="2.5600000000000005" height="12.444444444444445"></rect><rect fill="#4D89F9" x="13.12" y="10.666666666666668" width="2.5600000000000023" height="5.333333333333332"></rect><rect fill="#4D89F9" x="16.32" y="14.222222222222221" width="2.5600000000000023" height="1.7777777777777786"></rect><rect fill="#4D89F9" x="19.52" y="12.444444444444445" width="2.5600000000000023" height="3.5555555555555554"></rect><rect fill="#4D89F9" x="22.72" y="7.111111111111111" width="2.5600000000000023" height="8.88888888888889"></rect><rect fill="#4D89F9" x="25.919999999999998" y="5.333333333333334" width="2.5600000000000023" height="10.666666666666666"></rect><rect fill="#4D89F9" x="29.119999999999997" y="1.7777777777777786" width="2.5600000000000023" height="14.222222222222221"></rect></svg>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">3</td>
+                    <td class="text-left">Cab</td>
+                    <td class="text-right">11,688</td>
+                    <td class="text-right">58,440</td>
+                    <td class="text-right">1,530</td>
+                    <td class="text-center">
+                      <span data-peity="bar" style="display: none;">1,2,1,6,8,9,5,4,7,3</span><svg class="peity" height="16" width="32"><rect fill="#4D89F9" x="0.32" y="14.222222222222221" width="2.56" height="1.7777777777777786"></rect><rect fill="#4D89F9" x="3.5200000000000005" y="12.444444444444445" width="2.5599999999999996" height="3.5555555555555554"></rect><rect fill="#4D89F9" x="6.720000000000001" y="14.222222222222221" width="2.5599999999999987" height="1.7777777777777786"></rect><rect fill="#4D89F9" x="9.92" y="5.333333333333334" width="2.5600000000000005" height="10.666666666666666"></rect><rect fill="#4D89F9" x="13.12" y="1.7777777777777786" width="2.5600000000000023" height="14.222222222222221"></rect><rect fill="#4D89F9" x="16.32" y="0" width="2.5600000000000023" height="16"></rect><rect fill="#4D89F9" x="19.52" y="7.111111111111111" width="2.5600000000000023" height="8.88888888888889"></rect><rect fill="#4D89F9" x="22.72" y="8.88888888888889" width="2.5600000000000023" height="7.111111111111111"></rect><rect fill="#4D89F9" x="25.919999999999998" y="3.5555555555555554" width="2.5600000000000023" height="12.444444444444445"></rect><rect fill="#4D89F9" x="29.119999999999997" y="10.666666666666668" width="2.5600000000000023" height="5.333333333333332"></rect></svg>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-heading">
+              <h4>Key Matrics</h4>
+            </div>
+            <div class="card-body">
+              <table class="table table-hover table-bordered">
+                <thead>
+                  <tr>
+                    <th class="text-left">#</th>
+                    <th class="text-left">Item</th>
+                    <th class="text-right">Budget</th>
+                    <th class="text-right">Actual</th>
+                    <th class="text-right">Savings</th>
+                    <th class="text-center">Last 6 months</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="text-left">1</td>
+                    <td class="text-left">Travel</td>
+                    <td class="text-right">11,706</td>
+                    <td class="text-right">58,530</td>
+                    <td class="text-right">30,530</td>
+                    <td class="text-center">
+                      <span data-peity="bar" style="display: none;">5,3,9,6,5,9,7,3,5,2</span><svg class="peity" height="16" width="32"><rect fill="#4D89F9" x="0.32" y="7.111111111111111" width="2.56" height="8.88888888888889"></rect><rect fill="#4D89F9" x="3.5200000000000005" y="10.666666666666668" width="2.5599999999999996" height="5.333333333333332"></rect><rect fill="#4D89F9" x="6.720000000000001" y="0" width="2.5599999999999987" height="16"></rect><rect fill="#4D89F9" x="9.92" y="5.333333333333334" width="2.5600000000000005" height="10.666666666666666"></rect><rect fill="#4D89F9" x="13.12" y="7.111111111111111" width="2.5600000000000023" height="8.88888888888889"></rect><rect fill="#4D89F9" x="16.32" y="0" width="2.5600000000000023" height="16"></rect><rect fill="#4D89F9" x="19.52" y="3.5555555555555554" width="2.5600000000000023" height="12.444444444444445"></rect><rect fill="#4D89F9" x="22.72" y="10.666666666666668" width="2.5600000000000023" height="5.333333333333332"></rect><rect fill="#4D89F9" x="25.919999999999998" y="7.111111111111111" width="2.5600000000000023" height="8.88888888888889"></rect><rect fill="#4D89F9" x="29.119999999999997" y="12.444444444444445" width="2.5600000000000023" height="3.5555555555555554"></rect></svg>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">2</td>
+                    <td class="text-left">Hotel</td>
+                    <td class="text-right">15,860</td>
+                    <td class="text-right">79,300</td>
+                    <td class="text-right">18,530</td>
+                    <td class="text-center">
+                      <span data-peity="bar" style="display: none;">4,9,6,7,3,1,2,5,6,8</span><svg class="peity" height="16" width="32"><rect fill="#4D89F9" x="0.32" y="8.88888888888889" width="2.56" height="7.111111111111111"></rect><rect fill="#4D89F9" x="3.5200000000000005" y="0" width="2.5599999999999996" height="16"></rect><rect fill="#4D89F9" x="6.720000000000001" y="5.333333333333334" width="2.5599999999999987" height="10.666666666666666"></rect><rect fill="#4D89F9" x="9.92" y="3.5555555555555554" width="2.5600000000000005" height="12.444444444444445"></rect><rect fill="#4D89F9" x="13.12" y="10.666666666666668" width="2.5600000000000023" height="5.333333333333332"></rect><rect fill="#4D89F9" x="16.32" y="14.222222222222221" width="2.5600000000000023" height="1.7777777777777786"></rect><rect fill="#4D89F9" x="19.52" y="12.444444444444445" width="2.5600000000000023" height="3.5555555555555554"></rect><rect fill="#4D89F9" x="22.72" y="7.111111111111111" width="2.5600000000000023" height="8.88888888888889"></rect><rect fill="#4D89F9" x="25.919999999999998" y="5.333333333333334" width="2.5600000000000023" height="10.666666666666666"></rect><rect fill="#4D89F9" x="29.119999999999997" y="1.7777777777777786" width="2.5600000000000023" height="14.222222222222221"></rect></svg>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">3</td>
+                    <td class="text-left">Cab</td>
+                    <td class="text-right">11,688</td>
+                    <td class="text-right">58,440</td>
+                    <td class="text-right">1,530</td>
+                    <td class="text-center">
+                      <span data-peity="bar" style="display: none;">1,2,1,6,8,9,5,4,7,3</span><svg class="peity" height="16" width="32"><rect fill="#4D89F9" x="0.32" y="14.222222222222221" width="2.56" height="1.7777777777777786"></rect><rect fill="#4D89F9" x="3.5200000000000005" y="12.444444444444445" width="2.5599999999999996" height="3.5555555555555554"></rect><rect fill="#4D89F9" x="6.720000000000001" y="14.222222222222221" width="2.5599999999999987" height="1.7777777777777786"></rect><rect fill="#4D89F9" x="9.92" y="5.333333333333334" width="2.5600000000000005" height="10.666666666666666"></rect><rect fill="#4D89F9" x="13.12" y="1.7777777777777786" width="2.5600000000000023" height="14.222222222222221"></rect><rect fill="#4D89F9" x="16.32" y="0" width="2.5600000000000023" height="16"></rect><rect fill="#4D89F9" x="19.52" y="7.111111111111111" width="2.5600000000000023" height="8.88888888888889"></rect><rect fill="#4D89F9" x="22.72" y="8.88888888888889" width="2.5600000000000023" height="7.111111111111111"></rect><rect fill="#4D89F9" x="25.919999999999998" y="3.5555555555555554" width="2.5600000000000023" height="12.444444444444445"></rect><rect fill="#4D89F9" x="29.119999999999997" y="10.666666666666668" width="2.5600000000000023" height="5.333333333333332"></rect></svg>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer_top">
+      <div class="container">
+        <div class="col-md-4">
+          <h4>Contact</h4>
+          <ul class="contact_info">
+            <li>
+              <i class="fa fa-envelope-o" aria-hidden="true"></i> <span style="padding-left:3px">support@itilite.com</span>
+            </li>
+            <li>
+              <i class="fa fa-phone" aria-hidden="true"></i> <span style="padding-left:3px">+1-1983766903</span>
+            </li>
+          </ul>
+          <ul class="f_social">
+            <li><a class="fb" href="#">Facebook</a></li>
+            <li><a class="tw" href="#">Twitter</a></li>
+            <li><a class="gp" href="#">Google</a></li>
+          </ul>
+        </div>
+        <div class="col-md-2">
+          <h4>Product</h4>
+          <ul class="vertical_menu">
+            <li><a href="#">Footer Menu Item</a></li>
+            <li><a href="#">Menu Item 1</a></li>
+            <li><a href="#">Menu Item 2</a></li>
+            <li><a href="#">Lorem Ipsum</a></li>
+          </ul>
+        </div>
+        <div class="col-md-2">
+          <h4>Features</h4>
+          <ul class="vertical_menu">
+            <li><a href="#">Footer Menu Item</a></li>
+            <li><a href="#">Menu Item 1</a></li>
+            <li><a href="#">Menu Item 2</a></li>
+            <li><a href="#">Lorem Ipsum</a></li>
+          </ul>
+        </div>
+        <div class="col-md-2">
+          <h4>FAQ</h4>
+          <ul class="vertical_menu">
+            <li><a href="#">Footer Menu Item</a></li>
+            <li><a href="#">Menu Item 1</a></li>
+            <li><a href="#">Menu Item 2</a></li>
+            <li><a href="#">Lorem Ipsum</a></li>
+          </ul>
+        </div>
+        <div class="col-md-2">
+          <h4>Menu Item</h4>
+          <ul class="vertical_menu">
+            <li><a href="#">Footer Menu Item</a></li>
+            <li><a href="#">Menu Item 1</a></li>
+            <li><a href="#">Menu Item 2</a></li>
+            <li><a href="#">Lorem Ipsum</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      <div class="row">
+        <div class="col-md-6">
+          <ul class="footer_menu">
+            <li><a href="#">Support</a></li>
+            <li><a href="#">Terms of Use</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Disclaimer</a></li>
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <div class="copyright_info">
+            Copyright &copy; ITILITE. All Rights Reserved.
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+<script>
+(function($) {
+  'use strict';
+
+  function chart(element, options) {
+    var $element = $(element),
+    instance = $element.data('bs.chart');
+
+    if (instance) return instance;
+
+    var config = {};
+
+    config.type = options.type || options.chart;
+    config.type = $.camelCase(config.type);
+
+    set(config, 'data.labels', options.labels);
+    set(config, 'data.datasets',
+    $.map(options.values, function(value) {
+      if (~$.inArray('points', options.hide)) {
+        value.pointBackgroundColor = 'transparent';
+        value.pointBorderColor = 'transparent';
+      }
+      return value;
+    }));
+
+    set(config, 'options', options);
+    set(config, 'paths', {
+      // Hide gridlines, ticks, and labels
+      scalesX: 'scales.xAxes[0].display',
+      scalesY: 'scales.yAxes[0].display',
+
+      // Hide gridlines only
+      gridLinesX: 'scales.xAxes[0].gridLines.display',
+      gridLinesY: 'scales.yAxes[0].gridLines.display',
+
+      // Hide tooltips or legend
+      tooltips: 'tooltips.enabled',
+      legend: 'legend.display'
+    });
+
+    $.each(options.hide, function(idx, el) {
+      config.paths[el] && config.paths[el].length &&
+      set(config.options, config.paths[el], false);
+    });
+
+    instance = new Chart($element, config);
+    $element.data('bs.chart', instance);
+  }
+
+  function parsePath(path, seperator) {
+    return path.replace(/\[/g, '.').replace(/]/g, '')
+    .split(seperator);
+  }
+
+  function set(object, path, value) {
+    var keys = parsePath(path, '.'),
+    key = keys.shift();
+
+    if (keys.length === 0) {
+      return (object[key] = value);
+    }
+
+    // If next key is numeric initialize as array
+    var isIndex = typeof keys[0] === 'number';
+    object[key] || (object[key] = isIndex ? [] : {});
+
+    set(object[key], keys.join('.'), value);
+  }
+
+  $.fn.chart = function(options) {
+    var returnValue = this;
+
+    this.each(function() {
+      var instance = chart(this, options);
+
+      if (options === 'instance') {
+        returnValue = instance;
+        return false;
+      }
+    });
+
+    return returnValue;
+  };
+
+  $('[data-chart]').each(function() {
+    var $this = $(this),
+    data  = $this.data();
+
+    $this.chart(data);
+  });
+
+})(jQuery);
+</script>
+</html>
